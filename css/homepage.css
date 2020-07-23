@@ -1,0 +1,42 @@
+body{
+    background: #C9D6FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#top_bar{
+    position: relative;
+    top: 0;
+    z-index: 1;
+}
+
+#reg_bar{
+    position: absolute;
+    top: 49px;
+    left: 11%;
+    z-index: 2;
+}
+
+.card-title{
+    background: #c0392b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+#reg_bar > .card > .card-title{
+    background: #c0392b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+#reg_form_holder{
+    position: relative;
+}
+
+#reg_form_holder > button{
+    position: absolute;
+    top: 30%;
+    right: 20%;
+}
