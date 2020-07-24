@@ -3,22 +3,45 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>CloudLines</title>
         <link rel="stylesheet" type="text/css" href="../css/homepage.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/de9b2fe369.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-
+        <div class="container-fluid m-0">
+            <div class="row" id="top_bar">
+                <div class="col-lg-12 col-md-12 col-sm-12 mt-2" >
+                    <div class="card shadow-sm border-0">
+                        <div class="card-title bg-dark d-flex justify-content-center" style="height:9rem;"><h3 class="text-light">CloudLines</h3></div>
+                        <div class="card-body" style="height: 20rem;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-8 pr-0 mt-2" id="form_bar">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-title d-flex" style="height:6rem;"><h4 class="text-black-50 ml-2 mt-2">Login</h4></div>
+                        <div class="card-body pl-0" id="form_holder">
+                            <form class="pl-0">
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-left-0 border-right-0 border-top-0 rounded-0 chg_input w-75" id="lgn_user_name" placeholder="Enter Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control border-left-0 border-right-0 border-top-0 rounded-0 chg_input w-75" id="lgn_pwd" placeholder="Password">
+                                </div>
+                            </form>
+                            <button class="btn rounded-circle bg-success p-4" id="lgn_btn"> <i class="fa fa-arrow-right" aria-hidden="true"></i> </button>
+                        </div>
+                        <div>
+                            <p class="ml-2">No account? <a href="register.html">Join us</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <script type="text/javascript" src="../js/main.js"></script>
-        <script type="text/javascript" src="../js/homepage.js"></script>        
+        <script type="text/javascript" src="../js/homepage.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
