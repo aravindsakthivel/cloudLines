@@ -1,0 +1,95 @@
+body{
+    background: #B24592;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F15F79, #B24592);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F15F79, #B24592); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+
+#btm_bar{
+    z-index: 3;
+    position: relative;
+}
+
+
+#btm_bar > nav{
+    position: fixed;
+    bottom: -70px;
+    height: 120px;
+    border-radius: 15px;
+    padding-bottom: 70px;
+}
+
+
+.fa{
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+
+nav > .fa:hover{
+    background-color: #0275d8;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.pr_pic{
+    width: 40px;
+    border-radius: 35px;
+}
+
+.write{
+    position: relative;
+    z-index: 1;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .write > i{
+        position: fixed;
+        bottom: 15vh;
+        left: 75vw;
+        width: 70px;
+        background-color: aqua;
+        border-radius: 50px;
+    
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .write > i{
+        position: fixed;
+        top: 80vh;
+        left: 87vw;
+        width: 70px;
+        background-color: aqua;
+        border-radius: 50px;
+    
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .write > i{
+        position: fixed;
+        top: 80vh;
+        left: 90vw;
+        width: 70px;
+        background-color: aqua;
+        border-radius: 50px;
+    
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .write > i{
+        position: fixed;
+        top: 80vh;
+        left: 92vw;
+        width: 70px;
+        background-color: aqua;
+        border-radius: 50px;
+    
+    }
+}
