@@ -13,16 +13,25 @@ body{
 
 #form_bar{
     position: absolute;
-    top: 49px;
+    top: 44px;
     left: 15%;
     z-index: 2;
 }
 
-.card-title{
+.shadow-sm > div{
+    height: 8rem;
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px;
+}
+
+
+.shadow-lg > .card-title{
+    height: 6rem; 
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px;
     background: #c0392b;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 }
 
 #form_bar > .card > .card-title{
@@ -30,6 +39,14 @@ body{
     background: -webkit-linear-gradient(to top, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
+}
+
+.justify-content-center + .card-body{
+    border-radius: 0 0 3px 3px;
+    height: 20rem;
+    background: #c0392b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #form_holder{
