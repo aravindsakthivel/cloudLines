@@ -58,5 +58,12 @@ class CurrentUser extends CreateRegData{
 }
 
 
+class ChatDatabase extends CreateRegData{
+    constructor(name){
+        super(name)
+    }
+}
+
+
 let regUsers = new CreateRegData('Registered_Users')
 let lgdUser = new CurrentUser('Current_User')
