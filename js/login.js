@@ -29,7 +29,7 @@ const getLoginData = () => {
             }
             else if(allRegUsers[i].UserName === lgdData.name && allRegUsers[i].Password === lgdData.password){
                 lgdUser.userWho(allRegUsers[i])
-                setInterval(() => {
+                setTimeout(() => {
                     location.href = '../html/userHomepage.html'
                 }, 500)
                 break
@@ -40,3 +40,7 @@ const getLoginData = () => {
         }
     }
 }
+
+
+// lgn = login
+// lgd = logged

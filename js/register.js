@@ -24,6 +24,10 @@ const getRegData = () =>{
         let allRegUsers = regUsers.allData()
         if(allRegUsers.length === 0){
             regUsers.addUser(userEntData)
+            setTimeout(() =>{
+                alert("Successfully registered")
+            }, 200)
+            
         }
         else{
             for (let i = 0; i < allRegUsers.length; i++){
@@ -35,7 +39,9 @@ const getRegData = () =>{
                 }
                 else if(i === allRegUsers.length - 1){
                     flag = true
-                    alert("Successfully registered")
+                    setTimeout(() =>{
+                        alert("Successfully registered")
+                    }, 200)
                     break
                 }
             }
@@ -46,3 +52,6 @@ const getRegData = () =>{
         
     }
 }
+
+
+// reg = Registered
