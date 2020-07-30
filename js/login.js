@@ -10,7 +10,6 @@ const getLoginData = () => {
     let lgnPassword = document.getElementById('lgn_pwd').value
 
     let allRegUsers = regUsers.allData()
-    console.log(allRegUsers)
     if(lgnUsername === "" || lgnPassword === ""){
         alert("all field must be filled")
     }
