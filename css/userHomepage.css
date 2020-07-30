@@ -29,7 +29,7 @@ body{
 
 
 nav > .fa:hover{
-    background-color: #0275d8;
+    background-color: #203A43;
     padding: 10px;
     border-radius: 20px;
 }
@@ -44,52 +44,47 @@ nav > .fa:hover{
     z-index: 1;
 }
 
+.write > i{
+    position: fixed;
+    width: 70px;
+    background-color: aqua;
+    border-radius: 50px;
+
+}
+
+
+#thoughtModalCnt{
+    border-radius:15px;
+    background: #203A43; 
+    
+}
+
 
 
 @media only screen and (max-width: 600px) {
     .write > i{
-        position: fixed;
         bottom: 15vh;
-        left: 75vw;
-        width: 70px;
-        background-color: aqua;
-        border-radius: 50px;
-    
+        left: 75vw;    
     }
 }
 
 @media only screen and (min-width: 600px) {
     .write > i{
-        position: fixed;
         top: 80vh;
         left: 87vw;
-        width: 70px;
-        background-color: aqua;
-        border-radius: 50px;
-    
     }
 }
 
 @media only screen and (min-width: 768px) {
     .write > i{
-        position: fixed;
         top: 80vh;
         left: 90vw;
-        width: 70px;
-        background-color: aqua;
-        border-radius: 50px;
-    
     }
 }
 
 @media only screen and (min-width: 992px) {
     .write > i{
-        position: fixed;
         top: 80vh;
         left: 92vw;
-        width: 70px;
-        background-color: aqua;
-        border-radius: 50px;
-    
     }
 }
