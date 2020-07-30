@@ -1,4 +1,4 @@
-class CreateRegData {
+class CreateDataBase {
     constructor(name){
         this.name = name
 
@@ -39,7 +39,7 @@ class CreateRegData {
 
 
 
-class CurrentUser extends CreateRegData{
+class CurrentUser extends CreateDataBase{
     constructor(name){
         super(name)
         this.init = () =>{
@@ -58,12 +58,59 @@ class CurrentUser extends CreateRegData{
 }
 
 
-class ChatDatabase extends CreateRegData{
+class UserDataBase extends CreateDataBase{
     constructor(name){
         super(name)
+    }
+
+
+    addthgts(thgt,name,id){
+        let allthgts = this.allData()
+        if(allthgts.length === 0){
+            let userthgt = {
+                user: name,
+                id:id,
+                post:[thgt]
+            }
+            allthgts.push(userthgt)
+        }
+        else{
+            allthgts[0].post.push(thgt)
+        }
+        this.updateDB(allthgts)
     }
 }
 
 
-let regUsers = new CreateRegData('Registered_Users')
+class thgtsLdr extends CreateDataBase{
+    constructor(name){
+        this.name = name
+    }
+
+
+    indexThgts(ind){
+        let allthgtsInd = this.allData()
+        allthgtsInd.unshift(ind)
+        this.updateDB(allthgtsInd)
+    }
+
+
+    getThghtsInd(){
+        return this.allData()
+    }
+}
+
+
+
+let regUsers = new CreateDataBase('Registered_Users')
 let lgdUser = new CurrentUser('Current_User')
+
+
+// lgn = login
+// lgd = logged
+// reg = Registered
+// thgt = thought
+// thgts = thoughts
+// wr = write
+// btn = button
+// ind = index
