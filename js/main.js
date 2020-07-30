@@ -84,7 +84,7 @@ class UserDataBase extends CreateDataBase{
 
 class thgtsLdr extends CreateDataBase{
     constructor(name){
-        this.name = name
+        super(name)
     }
 
 
@@ -94,16 +94,13 @@ class thgtsLdr extends CreateDataBase{
         this.updateDB(allthgtsInd)
     }
 
-
-    getThghtsInd(){
-        return this.allData()
-    }
 }
 
 
 
 let regUsers = new CreateDataBase('Registered_Users')
 let lgdUser = new CurrentUser('Current_User')
+let ldrThgts = new thgtsLdr('ledger')
 
 
 // lgn = login
@@ -114,3 +111,4 @@ let lgdUser = new CurrentUser('Current_User')
 // wr = write
 // btn = button
 // ind = index
+// ldr = ledger
