@@ -45,7 +45,7 @@ const renderDom = async () =>{
     let ldr = ldrThgts.allData()
     let thgtsHolder = document.getElementById('everyThoughts')
     thgtsHolder.innerHTML = ""
-    for(var i = 0; i < ldr.length; i++){
+    for(var i = ldr.length - 1; i >= 0 ; i--){
         let userThgts = new UserDataBase(ldr[i].User)
         let data = userThgts.allData()
         let indivThgt = data[0].thoughtData[ldr[i].ThoughtNo]
@@ -107,7 +107,7 @@ const renderDom = async () =>{
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-outline-info btn-sm badge-pill cmn_btn" data-toggle="modal" data-target="#commentModal" onclick='commentPre(${i})'>comment</button>
+                        <button class="btn btn-outline-info btn-sm badge-pill cmn_btn" onclick='commentPre(${i})'>comment</button>
                     </div>
                 </div>
             </div>`
@@ -145,7 +145,6 @@ const unlike = async (no) => {
 }
 
 
-
 const likeCount = (ldr, no) =>{
     let userThgts = new UserDataBase(ldr[no].User)
     let data = userThgts.allData()
@@ -156,21 +155,30 @@ const likeCount = (ldr, no) =>{
 
 
 const commentPre = (no) =>{
+    $('#commentModal').modal('show')
+    console.log(no, 0)
     let commentBtn = document.getElementById('commentBtn')
-    commentBtn.addEventListener('click', function(){
-        getComment(no)
-    })
+    commentBtn.setAttribute('onclick', `getComment(${no})`)
 }
 
-const getComment = (no) =>{
-    let comment = document.getElementById('writtencomment').value
+
+const getComment = async (no) =>{
+    console.log(no, 1)
     let ldr = ldrThgts.allData()
-    let userThgts = new UserDataBase(ldr[no].User)
-    userThgts.addComments(crnUser.UserName, ldr[no].ThoughtNo, comment)
-
+    let username = crnUser.UserName
+    let thghtUser = ldr[no].User
+    let thgtno = ldr[no].ThoughtNo
+    let order = ldr[no].ord
+    let comment = document.getElementById('writtencomment').value
+    $('#commentModal').modal('hide')
+    let userThgts = new UserDataBase(thghtUser)
+    userThgts.addComments(username, thgtno, comment)
+    let allData = userThgts.allData()
+    console.log(allData)
+    let userCommentLocation = allData[0].thoughtData[thgtno].comments[username]
+    console.log(userCommentLocation)
+    ldrComment.indexComments(order, username, userCommentLocation.length - 1)
 }
-
-
 
 
 const logout = () =>{
@@ -186,3 +194,24 @@ const logout = () =>{
 // ldr = ledger
 // obj = object
 // lgd = logged
+
+
+let dummy = [
+    {
+        user:"Kevin",
+        id:2,
+        thoughtData:[
+            {
+                Date:"Jul 31 2020 ",
+                ThoughtNo:0,
+                Thought:"room1",
+                likes:["kevin","aravind","neha"],
+                comments:{
+                    kevin:["test 1","test 2"],
+                    aravind:["test_a1","test_a2"],
+                    neha:["final"]
+                }
+            }
+        ]
+    }
+]

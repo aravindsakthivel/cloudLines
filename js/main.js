@@ -134,7 +134,7 @@ class UserDataBase extends CreateDataBase{
 }
 
 
-class thgtsLdr extends CreateDataBase{
+class Ledger extends CreateDataBase{
     constructor(name){
         super(name)
     }
@@ -144,13 +144,35 @@ class thgtsLdr extends CreateDataBase{
         let allthgtsInd = this.allData()
         if(allthgtsInd.length === 0){
             ind.ord = 0
-            allthgtsInd.unshift(ind)
+            allthgtsInd.push(ind)
         }
         else{
             ind.ord = allthgtsInd.length
-            allthgtsInd.unshift(ind)
+            allthgtsInd.push(ind)
         }
         this.updateDB(allthgtsInd)
+    }
+
+
+    indexComments(thgtNo, user, no){
+        let allCommentInd = this.allData()
+        if(allCommentInd.length === 0){
+            let temp = [user, no]
+            let data = {
+                [thgtNo]:[temp]
+            }
+            allCommentInd.push(data)
+        }
+        else if(!(allCommentInd[0].hasOwnProperty(thgtNo))){
+            let temp = [user, no]
+            Object.assign(allCommentInd[0], { [thgtNo]:[temp]})
+        }
+        else{
+            let temp = [user, no]
+            console.log(allCommentInd[0][thgtNo])
+            allCommentInd[0][thgtNo].push(temp)
+        }
+        this.updateDB(allCommentInd)
     }
 
 }
@@ -158,9 +180,12 @@ class thgtsLdr extends CreateDataBase{
 
 
 
+
+
 let regUsers = new CreateDataBase('Registered_Users')
 let lgdUser = new CurrentUser('Current_User')
-let ldrThgts = new thgtsLdr('ledger')
+let ldrThgts = new Ledger('thoughtLedger')
+let ldrComment = new Ledger('commentLedger')
 
 
 // lgn = login
@@ -172,3 +197,4 @@ let ldrThgts = new thgtsLdr('ledger')
 // btn = button
 // ind = index
 // ldr = ledger
+// ord = order
