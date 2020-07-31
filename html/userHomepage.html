@@ -37,6 +37,30 @@
                     </div>
                 </div>
             </div>
+            <div class="row" id="yourComment">
+                <div class="col-6">
+                    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" id="commentModalCnt">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-white" id="commentModalTitle">Comments</h5>
+                                    <div class="ml-auto">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
+                                        <button type="button" class="btn btn-primary" id="commentBtn">Write</button>
+                                    </div>
+                                </div>
+                                <div class="modal-body p-0">
+                                    <form class="mt-2">
+                                        <div class="form-group">
+                                            <textarea class="form-control bg-dark text-white border-0" id="writtencomment" rows="5"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row" id="writeBtn">
                 <div class="write btn" data-toggle="modal" data-target="#thoughtModal">
                     <i class="fa fa-pencil text-danger" aria-hidden="true"></i>

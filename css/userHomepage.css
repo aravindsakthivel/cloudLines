@@ -53,12 +53,16 @@ nav > .fa:hover{
 }
 
 
-#thoughtModalCnt{
+#thoughtModalCnt, #commentModalCnt{
     border-radius:15px;
     background: #203A43; 
     
 }
 
+
+.cmn_btn{
+    margin: 5px 0 15px 70px;
+}
 
 
 @media only screen and (max-width: 600px) {
