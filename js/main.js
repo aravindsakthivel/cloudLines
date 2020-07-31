@@ -70,14 +70,42 @@ class UserDataBase extends CreateDataBase{
             let userthgt = {
                 user: name,
                 id:id,
-                post:[thgt]
+                thoughtData:[thgt]
             }
             allthgts.push(userthgt)
         }
         else{
-            allthgts[0].post.push(thgt)
+            allthgts[0].thoughtData.push(thgt)
         }
         this.updateDB(allthgts)
+    }
+
+
+    addLikes(user, thgtNo){
+        let allData = this.allData()
+        let thghtsData = allData[0].thoughtData[thgtNo]
+        if(!('likes' in thghtsData)){
+            let likers = []
+            likers.push(user)
+            thghtsData.likes = likers
+        }
+        else{
+            thghtsData.likes.push(user)
+        }
+        this.updateDB(allData)
+    }
+
+
+    removeLikes(user, thgtNo){
+        let allData = this.allData()
+        let thghtsData = allData[0].thoughtData[thgtNo]
+        console.log(thghtsData)
+        let likesArr = thghtsData.likes
+        console.log(likesArr)
+        let userInd = likesArr.indexOf(user)
+        likesArr.splice(userInd, 1)
+        console.log(likesArr)
+        this.updateDB(allData)
     }
 }
 
@@ -90,11 +118,19 @@ class thgtsLdr extends CreateDataBase{
 
     indexThgts(ind){
         let allthgtsInd = this.allData()
-        allthgtsInd.unshift(ind)
+        if(allthgtsInd.length === 0){
+            ind.ord = 0
+            allthgtsInd.unshift(ind)
+        }
+        else{
+            ind.ord = allthgtsInd.length
+            allthgtsInd.unshift(ind)
+        }
         this.updateDB(allthgtsInd)
     }
 
 }
+
 
 
 
