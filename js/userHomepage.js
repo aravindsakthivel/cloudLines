@@ -41,11 +41,11 @@ const getThgt = () =>{
 }
 
 
-const renderDom = () =>{
+const renderDom = async () =>{
     let ldr = ldrThgts.allData()
     let thgtsHolder = document.getElementById('everyThoughts')
     thgtsHolder.innerHTML = ""
-    for(let i = 0; i < ldr.length; i++){
+    for(var i = 0; i < ldr.length; i++){
         let userThgts = new UserDataBase(ldr[i].User)
         let data = userThgts.allData()
         let indivThgt = data[0].thoughtData[ldr[i].ThoughtNo]
@@ -87,20 +87,37 @@ const renderDom = () =>{
                         </div>
                     </div>
                     <div class="collapse" id="collapse${i}">
-                        <div class="card card-body bg-dark text-white-50 border-left-0 border-right-0 border-bottom-0">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                        </div>
-                        <form class="mx-5">
-                            <div class="form-group">
-                                <textarea class="form-control bg-dark text-white" id="comment${i}" rows="2" placeholder="comments"></textarea>
+                        <div class='card border-0 bg-dark mb-1 ml-5 w3-animate-left' id='comment_holder_${i}'>
+                            <div class="card-body">
+                                <img class="pr_pic float-left mr-2" src="../Resources/profilePic.png">
+                                <div class="d-flex flex-column mx-2 mt-2">
+                                    <div class="card-title text-white">xyz<small class="text-white-50 ml-2">20/03</small></div>
+                                    <div class="text-white">
+                                        lorta oaisfd f osijfikjf oflkbjhasdgfv kjasdfghjkwsertyui
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-info btn-sm btn-block mb-2">Submit</button>
-                        </form>
+                            <div class="card-body">
+                                <img class="pr_pic float-left mr-2" src="../Resources/profilePic.png">
+                                <div class="d-flex flex-column mx-2 mt-2">
+                                    <div class="card-title text-white">xyz<small class="text-white-50 ml-2">20/03</small></div>
+                                    <div class="text-white">
+                                        lorta oaisfd f osijfikjf oflkbjhasdgfv kjasdfghjkwsertyui
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-info btn-sm badge-pill cmn_btn" data-toggle="modal" data-target="#commentModal" onclick='commentPre(${i})'>comment</button>
                     </div>
                 </div>
             </div>`
     }
+
+}
+
+
+const none = () =>{
+    console.log(1)
 }
 
 
@@ -128,13 +145,6 @@ const unlike = async (no) => {
 }
 
 
-const logout = () =>{
-    setTimeout(() =>{
-        window.location.reload(true);
-        window.location.replace('../html/login.html');
-    }, 300)
-}
-
 
 const likeCount = (ldr, no) =>{
     let userThgts = new UserDataBase(ldr[no].User)
@@ -145,7 +155,30 @@ const likeCount = (ldr, no) =>{
 }
 
 
+const commentPre = (no) =>{
+    let commentBtn = document.getElementById('commentBtn')
+    commentBtn.addEventListener('click', function(){
+        getComment(no)
+    })
+}
 
+const getComment = (no) =>{
+    let comment = document.getElementById('writtencomment').value
+    let ldr = ldrThgts.allData()
+    let userThgts = new UserDataBase(ldr[no].User)
+    userThgts.addComments(crnUser.UserName, ldr[no].ThoughtNo, comment)
+
+}
+
+
+
+
+const logout = () =>{
+    setTimeout(() =>{
+        window.location.reload(true);
+        window.location.replace('../html/login.html');
+    }, 300)
+}
 // crn = current
 // thgt = thought
 // wr = write

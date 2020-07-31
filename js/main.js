@@ -99,12 +99,36 @@ class UserDataBase extends CreateDataBase{
     removeLikes(user, thgtNo){
         let allData = this.allData()
         let thghtsData = allData[0].thoughtData[thgtNo]
-        console.log(thghtsData)
         let likesArr = thghtsData.likes
-        console.log(likesArr)
         let userInd = likesArr.indexOf(user)
         likesArr.splice(userInd, 1)
-        console.log(likesArr)
+        this.updateDB(allData)
+    }
+
+
+    addComments(user, thgtNo, comment){
+        let allData = this.allData()
+        let thghtsData = allData[0].thoughtData[thgtNo]
+        if(!('comments' in thghtsData)){
+            thghtsData.comments = {}
+            if(!(user in thghtsData.comments)){
+                let userComments = []
+                userComments.push(comment)
+                thghtsData.comments = {
+                    [user]:userComments
+                }
+            }
+        }
+        else{
+            if(!(thghtsData.comments.hasOwnProperty(user))){
+                let userComments = []
+                userComments.push(comment)
+                Object.assign(thghtsData.comments, { [user]:userComments})
+            }
+            else{
+                thghtsData.comments[user].push(comment)
+            }
+        }
         this.updateDB(allData)
     }
 }
