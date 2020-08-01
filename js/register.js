@@ -33,9 +33,11 @@ const getRegData = () =>{
             for (let i = 0; i < allRegUsers.length; i++){
                 if(allRegUsers[i].UserName === userEntData.UserName){
                     alert("The Username is already used")
+                    break
                 }
                 else if(allRegUsers[i].Email === userEntData.Email){
                     alert("The Username is already used")
+                    break
                 }
                 else if(i === allRegUsers.length - 1){
                     flag = true
