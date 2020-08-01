@@ -4,6 +4,14 @@ let crnUser = lgdUser.allData()
 window.onload = () => {
     let thgtWrBtn = document.getElementById("thoughtBtn")
     thgtWrBtn.addEventListener('click', getThgt)
+    let homeBtn = document.getElementById('home_btn')
+    let logoutBtn = document.getElementById('logout_btn')
+    let findFriend = document.getElementById("find_friend")
+    let showProfile = document.getElementById("profile_info")
+    homeBtn.addEventListener('click', refresh)
+    logoutBtn.addEventListener('click', logout)
+    findFriend.addEventListener('click',findFriendsPage)
+    showProfile.addEventListener('click', profilePage)
     renderDom()
 }
 
@@ -37,8 +45,6 @@ const getThgt = () =>{
     setTimeout(() =>{
         renderDom()
     }, 500)
-
-
 }
 
 
@@ -155,7 +161,7 @@ const getComment = async (no) =>{
     let comment = document.getElementById('writtencomment').value
     let date =  Date().split("").slice(4,16).join("")
     let fullName = crnUser.FullName
-    let cmbData = comment+":"+date+":"+fullName
+    let cmbData = [comment,date,fullName]
     $('#commentModal').modal('hide')
     let userThgts = new UserDataBase(thghtUser)
     await userThgts.addComments(username, thgtno, cmbData)
@@ -190,7 +196,7 @@ const commentshow = (no) =>{
             let userThgts = new UserDataBase(thghtUser)
             let allData = userThgts.allData()
             let commentOfThght  = allData[0].thoughtData[thgtno].comments
-            let cmbData = commentOfThght[user][ord].split(":")
+            let cmbData = commentOfThght[user][ord]
             commentHolder.innerHTML += `
                 <div class="card-body">
                     <img class="pr_pic float-left mr-2" src="../Resources/profilePic.png">
@@ -205,13 +211,6 @@ const commentshow = (no) =>{
     }
 }
 
-
-const logout = () =>{
-    setTimeout(() =>{
-        window.location.reload(true);
-        window.location.replace('../html/login.html');
-    }, 300)
-}
 
 
 // crn = current
