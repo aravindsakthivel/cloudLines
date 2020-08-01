@@ -21,6 +21,7 @@ const getThgt = () =>{
         thoughtNo = userThgts.allData()[0].thoughtData.length
     }
     let thgtData = {
+        Flag:true,
         Date:date,
         ThoughtNo: thoughtNo,
         Thought:thgt
@@ -41,7 +42,7 @@ const getThgt = () =>{
 }
 
 
-const renderDom = async () =>{
+const renderDom = () =>{
     let ldr = ldrThgts.allData()
     let thgtsHolder = document.getElementById('everyThoughts')
     thgtsHolder.innerHTML = ""
@@ -52,6 +53,10 @@ const renderDom = async () =>{
         let likeOption = `like(${i})`
         let clr = 'text-white'
         let noLikes = 0
+        let noComments = 0
+        if(!indivThgt.Flag){
+            continue
+        }
         if(('likes' in indivThgt)){
             let temp = indivThgt.likes
             noLikes = temp.length
@@ -59,6 +64,10 @@ const renderDom = async () =>{
                 clr = 'text-danger'
                 likeOption = `unlike(${i})`
             }
+        }
+        if(('comments' in indivThgt)){
+            let commentInd = ldrComment.allData()
+            noComments = commentInd[0][i].length
         }
         thgtsHolder.innerHTML +=`
             <div class="col-lg-12 col-md-12 col-sm-12 p-0 ">
@@ -77,47 +86,21 @@ const renderDom = async () =>{
                             <i class="fa fa-heart ${clr} fa-1x " aria-hidden="true" id='like_${i}' onclick='${likeOption}'>
                                 <p class='text-success float-right ml-2'>${noLikes}</p>
                             </i>
-                            <i class="fa fa-comments text-white btn fa-1x" data-toggle="collapse" href="#collapse${i}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                <p class='text-success float-right ml-2'>5</p>
-                            </i>
-                            <i class="fa fa-retweet text-white fa-1x" aria-hidden="true">
-                                <p class='text-success float-right ml-2'>5</p>
+                            <i class="fa fa-comments text-white btn fa-1x" data-toggle="collapse" href="#collapse${i}" id="commentImg${i}" onclick='commentshow(${i})' role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <p class='text-success float-right ml-2'>${noComments}</p>
                             </i>
                             <i class="fa fa-share-alt text-white fa-1x" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="collapse" id="collapse${i}">
+                        <button class="btn btn-outline-info btn-sm badge-pill cmn_btn mt-2" onclick='commentPre(${i})'>comment</button>
                         <div class='card border-0 bg-dark mb-1 ml-5 w3-animate-left' id='comment_holder_${i}'>
-                            <div class="card-body">
-                                <img class="pr_pic float-left mr-2" src="../Resources/profilePic.png">
-                                <div class="d-flex flex-column mx-2 mt-2">
-                                    <div class="card-title text-white">xyz<small class="text-white-50 ml-2">20/03</small></div>
-                                    <div class="text-white">
-                                        lorta oaisfd f osijfikjf oflkbjhasdgfv kjasdfghjkwsertyui
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <img class="pr_pic float-left mr-2" src="../Resources/profilePic.png">
-                                <div class="d-flex flex-column mx-2 mt-2">
-                                    <div class="card-title text-white">xyz<small class="text-white-50 ml-2">20/03</small></div>
-                                    <div class="text-white">
-                                        lorta oaisfd f osijfikjf oflkbjhasdgfv kjasdfghjkwsertyui
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <button class="btn btn-outline-info btn-sm badge-pill cmn_btn" onclick='commentPre(${i})'>comment</button>
                     </div>
                 </div>
             </div>`
     }
 
-}
-
-
-const none = () =>{
-    console.log(1)
 }
 
 
@@ -170,14 +153,56 @@ const getComment = async (no) =>{
     let thgtno = ldr[no].ThoughtNo
     let order = ldr[no].ord
     let comment = document.getElementById('writtencomment').value
+    let date =  Date().split("").slice(4,16).join("")
+    let fullName = crnUser.FullName
+    let cmbData = comment+":"+date+":"+fullName
     $('#commentModal').modal('hide')
     let userThgts = new UserDataBase(thghtUser)
-    userThgts.addComments(username, thgtno, comment)
+    await userThgts.addComments(username, thgtno, cmbData)
     let allData = userThgts.allData()
-    console.log(allData)
     let userCommentLocation = allData[0].thoughtData[thgtno].comments[username]
-    console.log(userCommentLocation)
-    ldrComment.indexComments(order, username, userCommentLocation.length - 1)
+    await ldrComment.indexComments(order, username, userCommentLocation.length - 1)
+    let commentImg = document.getElementById(`commentImg${no}`)
+    let commentCount = commentImg.firstElementChild
+    let commentInd = ldrComment.allData()
+    let noComments = commentInd[0][no].length
+    setTimeout(() =>{
+        commentshow(no)
+        commentCount.innerHTML = noComments
+    }, 500)
+}
+
+
+const commentshow = (no) =>{
+    let commentHolder = document.getElementById(`comment_holder_${no}`)
+    commentHolder.innerHTML = ""
+    let commentInd = ldrComment.allData()
+    if(commentInd[0] === undefined || commentInd[0][no] === undefined){
+        commentHolder.innerHTML += `
+        <div class="card-body text-white">No Comments</div>` 
+    }
+    else{
+        for(let i = commentInd[0][no].length - 1; i >= 0 ; i--){
+            let [user, ord] = commentInd[0][no][i]
+            let ldr = ldrThgts.allData()
+            let thghtUser = ldr[no].User
+            let thgtno = ldr[no].ThoughtNo
+            let userThgts = new UserDataBase(thghtUser)
+            let allData = userThgts.allData()
+            let commentOfThght  = allData[0].thoughtData[thgtno].comments
+            let cmbData = commentOfThght[user][ord].split(":")
+            commentHolder.innerHTML += `
+                <div class="card-body">
+                    <img class="pr_pic float-left mr-2" src="../Resources/profilePic.png">
+                    <div class="d-flex flex-column mx-2 mt-2">
+                        <div class="card-title text-white">${cmbData[2]}<small class="text-white-50 ml-2">${cmbData[1]}</small></div>
+                        <div class="text-white">
+                            ${cmbData[0]}
+                        </div>
+                    </div>
+                </div>`
+        }
+    }
 }
 
 
@@ -187,6 +212,8 @@ const logout = () =>{
         window.location.replace('../html/login.html');
     }, 300)
 }
+
+
 // crn = current
 // thgt = thought
 // wr = write
@@ -194,24 +221,3 @@ const logout = () =>{
 // ldr = ledger
 // obj = object
 // lgd = logged
-
-
-let dummy = [
-    {
-        user:"Kevin",
-        id:2,
-        thoughtData:[
-            {
-                Date:"Jul 31 2020 ",
-                ThoughtNo:0,
-                Thought:"room1",
-                likes:["kevin","aravind","neha"],
-                comments:{
-                    kevin:["test 1","test 2"],
-                    aravind:["test_a1","test_a2"],
-                    neha:["final"]
-                }
-            }
-        ]
-    }
-]
