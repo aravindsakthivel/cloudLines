@@ -55,6 +55,11 @@ class CurrentUser extends CreateDataBase{
         this.updateDB(data)
     }
 
+    checkUser(){
+        let data = {}
+        this.updateDB(data)
+    }
+
 }
 
 
@@ -80,6 +85,22 @@ class UserDataBase extends CreateDataBase{
         this.updateDB(allthgts)
     }
 
+    getThgts(){
+        let allData = this.allData()
+        if(!('thoughtData' in allData[0])){
+            return false
+        }
+        else{
+            return allData[0].thoughtData
+        }
+    }
+
+
+    deleteThgts(data){
+        let allData = this.allData()
+        allData[0].thoughtData[data].Flag = false
+        this.updateDB(allData)
+    }
 
     addLikes(user, thgtNo){
         let allData = this.allData()
@@ -131,6 +152,44 @@ class UserDataBase extends CreateDataBase{
         }
         this.updateDB(allData)
     }
+
+
+    addDp(data){
+        let allData = this.allData()
+        console.log(allData[0])
+        if(!('Dp' in allData[0])){
+            console.log(allData[0])
+            allData[0].Dp = data
+        }
+        else{
+            allData[0].Dp = data
+        }
+        this.updateDB(allData)
+    }
+
+
+    getDp(){
+        let allData = this.allData()
+        return allData[0].Dp
+    }
+
+
+    addPersonalInfo(data){
+        let allData = this.allData()
+        if(!('personalInfo' in allData[0])){
+            allData[0].personalInfo = data
+        }
+        this.updateDB(allData)
+    }
+
+
+    getPersonalInfo(){
+        let allData = this.allData()
+        if(!('personalInfo' in allData[0])){
+            return false
+        }
+        return allData[0].personalInfo
+    }
 }
 
 
@@ -154,6 +213,16 @@ class Ledger extends CreateDataBase{
     }
 
 
+    getLastIndex(){
+        let allthgtsInd = this.allData()
+        if(allthgtsInd.length === 0){
+            return false
+        }
+        else{
+            return allthgtsInd[allthgtsInd.length - 1].ord
+        }
+    }
+
     indexComments(thgtNo, user, no){
         let allCommentInd = this.allData()
         if(allCommentInd.length === 0){
@@ -176,10 +245,6 @@ class Ledger extends CreateDataBase{
     }
 
 }
-
-
-
-
 
 
 let regUsers = new CreateDataBase('Registered_Users')
