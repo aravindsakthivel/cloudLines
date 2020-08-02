@@ -58,3 +58,7 @@ body{
     top: 30%;
     right: 3%;
 }
+
+input:focus{
+    box-shadow: none !important;
+}

@@ -2,7 +2,11 @@ body{
     background: #B24592;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #F15F79, #B24592);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #F15F79, #B24592); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+}
+
+.pr_pic{
+    height: 40px;
+    border-radius: 35px;
 }
 
 
@@ -32,4 +36,8 @@ nav > .fa:hover{
     background-color: #203A43;
     padding: 10px;
     border-radius: 20px;
+}
+
+input:focus{
+    box-shadow: none !important;
 }

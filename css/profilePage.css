@@ -1,0 +1,43 @@
+/* #top_bar{
+    position: relative;
+    z-index: 1;
+}
+
+#top_info{
+    position: absolute;
+    top: 30px;
+    left: -50px;
+} */
+
+#top_info > .card{
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    
+}
+
+#profile_data_in{
+    border-bottom-right-radius: 100px;
+}
+
+#thought{
+    position: relative;
+}
+
+/* .thought_info{
+    position: absolute;
+    top: 150px;
+} */
+
+.image-upload input {
+    display: none;
+    widows: 0;
+    height:0
+}
+
+#my_profile_name{
+    font-size: 20px;
+}
+
+.lastComment{
+    margin-bottom: 100px;
+}
