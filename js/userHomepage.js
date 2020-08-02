@@ -21,27 +21,26 @@ const getThgt = () =>{
     let date =  Date().split("").slice(4,16).join("")
     let userThgts = new UserDataBase(crnUser.UserName)
     let thoughtNo = 0
-    // object for thought
     if(userThgts.allData().length === 0){
         thoughtNo = 0
     }
     else{
         thoughtNo = userThgts.allData()[0].thoughtData.length
     }
-    let thgtData = {
-        Flag:true,
-        Date:date,
-        ThoughtNo: thoughtNo,
-        Thought:thgt
-    }
-    // Object for ledger
     let ldrobj = {
         User:crnUser.UserName,
         ThoughtNo:thoughtNo
     }
-    $('#thoughtModal').modal('hide')
-    userThgts.addthgts(thgtData,crnUser.FullName ,crnUser.id)
     ldrThgts.indexThgts(ldrobj)
+    let thgtData = {
+        Flag:true,
+        Date:date,
+        Ord:ldrThgts.getLastIndex(),
+        ThoughtNo: thoughtNo,
+        Thought:thgt
+    }
+    userThgts.addthgts(thgtData,crnUser.FullName ,crnUser.id)
+    $('#thoughtModal').modal('hide')
     setTimeout(() =>{
         renderDom()
     }, 500)
