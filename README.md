@@ -1,5 +1,3 @@
-### masai-sprint-6
-
 # Cloudlines - Blog
 ### Contents:
  1. Registration Page
