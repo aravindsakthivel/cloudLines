@@ -9,7 +9,7 @@ const refresh = () =>{
 const logout = () =>{
     setTimeout(() =>{
         window.location.reload(true);
-        window.location.replace('../html/login.html');
+        window.location.replace('../index.html');
     }, 300)
 }
 
